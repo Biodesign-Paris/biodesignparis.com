@@ -12,6 +12,70 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
 
   <style>
+    /* ============================================
+       CSS VARIABLES & DESIGN TOKENS
+       ============================================ */
+    :root {
+      /* Colors */
+      --color-primary: #8B5CF6;
+      --color-primary-dark: #7C3AED;
+      --color-primary-light: rgba(139, 92, 246, 0.03);
+      --color-linkedin: #0077B5;
+      --color-linkedin-dark: #005885;
+      --color-dark: #222222;
+      --color-dark-hover: #444444;
+      --color-gray: #666666;
+      --color-gray-hover: #888888;
+      --color-bg-light: #f5f5f5;
+      --color-bg-dark: #e0e0e0;
+      --color-white: #ffffff;
+
+      /* Typography */
+      --font-serif: Georgia, serif;
+      --font-display: 'Playfair Display', serif;
+
+      /* Font sizes */
+      --text-xs: 13px;
+      --text-sm: 14px;
+      --text-base: 16px;
+      --text-md: 17px;
+      --text-lg: 18px;
+      --text-xl: 20px;
+      --text-2xl: 24px;
+
+      /* Line heights */
+      --line-tight: 1.1;
+      --line-snug: 1.4;
+      --line-normal: 1.6;
+      --line-relaxed: 1.8;
+
+      /* Spacing */
+      --spacing-xs: 8px;
+      --spacing-sm: 10px;
+      --spacing-md: 20px;
+      --spacing-lg: 30px;
+      --spacing-xl: 40px;
+      --spacing-2xl: 50px;
+      --spacing-3xl: 60px;
+
+      /* Border radius */
+      --radius-sm: 30px;
+      --radius-lg: 50px;
+
+      /* Shadows */
+      --shadow-sm: 0 3px 5px;
+      --shadow-md: 0 4px 6px;
+      --shadow-lg: 0 5px 10px;
+      --shadow-xl: 0 6px 12px;
+
+      /* Transitions */
+      --transition-base: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      --transition-transform: transform 0.3s ease;
+    }
+
+    /* ============================================
+       RESET & BASE STYLES
+       ============================================ */
     * {
       margin: 0;
       padding: 0;
@@ -19,11 +83,236 @@
     }
 
     body {
-      font-family: Georgia, serif;
-      color: #222222;
+      font-family: var(--font-serif);
+      color: var(--color-dark);
       overflow-x: hidden;
-      background: #f5f5f5;
+      background: var(--color-bg-light);
     }
+
+    /* ============================================
+       UTILITY CLASSES
+       ============================================ */
+
+    /* Typography utilities */
+    .text-heading-primary {
+      font-size: var(--text-2xl);
+      line-height: var(--line-snug);
+      font-weight: normal;
+      opacity: 0.9;
+    }
+
+    .text-heading-secondary {
+      font-size: var(--text-xl);
+      line-height: var(--line-snug);
+      font-weight: normal;
+      opacity: 0.9;
+    }
+
+    .text-body {
+      font-size: var(--text-md);
+      line-height: var(--line-normal);
+      opacity: 0.85;
+    }
+
+    .text-small {
+      font-size: var(--text-sm);
+      line-height: var(--line-relaxed);
+      opacity: 0.7;
+    }
+
+    .text-muted {
+      opacity: 0.85;
+    }
+
+    .text-secondary {
+      opacity: 0.7;
+    }
+
+    .text-faded {
+      opacity: 0.6;
+    }
+
+    .text-subtle {
+      opacity: 0.5;
+    }
+
+    /* Layout utilities */
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: var(--spacing-xl) var(--spacing-md);
+    }
+
+    .container--wide {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: var(--spacing-xl) var(--spacing-md);
+    }
+
+    .section {
+      padding: var(--spacing-xl) var(--spacing-md);
+    }
+
+    .section--compact {
+      padding: var(--spacing-md) var(--spacing-md) var(--spacing-xl);
+    }
+
+    .section--spacious {
+      padding: var(--spacing-3xl) var(--spacing-md) var(--spacing-xl);
+    }
+
+    /* Grid utilities */
+    .grid-auto {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: var(--spacing-2xl);
+    }
+
+    .grid-auto--tight {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: var(--spacing-xl);
+    }
+
+    .grid-auto--wide {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: var(--spacing-3xl);
+    }
+
+    /* Button component */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+      padding: 16px 40px;
+      border-radius: var(--radius-lg);
+      text-decoration: none;
+      font-family: var(--font-serif);
+      font-size: var(--text-md);
+      font-weight: 500;
+      transition: var(--transition-base);
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      border: none;
+      background: var(--color-primary);
+      color: var(--color-white);
+      box-shadow: var(--shadow-md) rgba(139, 92, 246, 0.2);
+    }
+
+    .btn--small {
+      padding: 12px 30px;
+      font-size: var(--text-sm);
+      border-radius: var(--radius-sm);
+      box-shadow: var(--shadow-sm) rgba(139, 92, 246, 0.2);
+    }
+
+    .btn--primary {
+      background: var(--color-primary);
+      box-shadow: var(--shadow-md) rgba(139, 92, 246, 0.2);
+    }
+
+    .btn--linkedin {
+      background: var(--color-linkedin);
+      box-shadow: var(--shadow-md) rgba(0, 119, 181, 0.2);
+    }
+
+    .btn--dark {
+      background: var(--color-dark);
+      box-shadow: var(--shadow-md) rgba(34, 34, 34, 0.2);
+    }
+
+    .btn--gray {
+      background: var(--color-gray);
+      box-shadow: var(--shadow-md) rgba(102, 102, 102, 0.2);
+    }
+
+    /* Button hover states */
+    .btn:hover {
+      transform: translateY(-2px) scale(1.02);
+    }
+
+    .btn--primary:hover {
+      background: var(--color-primary-dark);
+      box-shadow: var(--shadow-xl) rgba(139, 92, 246, 0.3);
+    }
+
+    .btn--linkedin:hover {
+      background: var(--color-linkedin-dark);
+      box-shadow: var(--shadow-xl) rgba(0, 119, 181, 0.3);
+    }
+
+    .btn--dark:hover {
+      background: var(--color-dark-hover);
+      box-shadow: var(--shadow-xl) rgba(34, 34, 34, 0.3);
+    }
+
+    .btn--gray:hover {
+      background: var(--color-gray-hover);
+      box-shadow: var(--shadow-xl) rgba(102, 102, 102, 0.3);
+    }
+
+    /* Button small hover adjustments */
+    .btn--small:hover {
+      box-shadow: var(--shadow-lg) rgba(139, 92, 246, 0.3);
+    }
+
+    .btn--small.btn--linkedin:hover {
+      box-shadow: var(--shadow-lg) rgba(0, 119, 181, 0.3);
+    }
+
+    .btn--small.btn--gray:hover {
+      box-shadow: var(--shadow-lg) rgba(102, 102, 102, 0.3);
+    }
+
+    /* Button focus states */
+    .btn:focus-visible {
+      outline: 2px solid var(--color-primary);
+      outline-offset: 2px;
+    }
+
+    .btn--dark:focus-visible,
+    .btn--gray:focus-visible {
+      outline-color: var(--color-gray);
+    }
+
+    /* Button icons */
+    .btn svg {
+      width: 20px;
+      height: 20px;
+      transition: var(--transition-transform);
+      flex-shrink: 0;
+    }
+
+    .btn--small svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .btn:hover svg {
+      transform: translateX(2px);
+    }
+
+    /* Flex utilities */
+    .flex-center {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .flex-column {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .gap-sm { gap: var(--spacing-sm); }
+    .gap-md { gap: var(--spacing-md); }
+    .gap-lg { gap: var(--spacing-lg); }
+
+    /* ============================================
+       COMPONENT STYLES
+       ============================================ */
 
     /* Hero Section */
     .hero-section {
@@ -61,42 +350,23 @@
       position: relative;
       z-index: 10;
       text-align: center;
-      padding: 0 20px;
+      padding: 0 var(--spacing-md);
     }
 
     .hero-title h1 {
-      font-family: 'Playfair Display', serif;
+      font-family: var(--font-display);
       font-style: italic;
       font-size: clamp(2.5rem, 6vw, 4.5rem);
-      color: white;
+      color: var(--color-white);
       text-shadow: 0 4px 20px rgba(0,0,0,0.2);
       letter-spacing: -1px;
-      line-height: 1.1;
+      line-height: var(--line-tight);
       font-weight: 400;
     }
 
     /* Content Section */
-    .content-section {
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 60px 20px 40px;
-    }
-
-    .content-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 50px;
-      margin-bottom: 50px;
-    }
-
     .content-column h2 {
-      font-family: Georgia, serif;
-      font-size: 20px;
-      line-height: 1.4;
-      margin-bottom: 20px;
-      color: #222222;
-      opacity: 0.9;
-      font-weight: normal;
+      margin-bottom: var(--spacing-md);
     }
 
     .content-column h2 em {
@@ -104,118 +374,29 @@
     }
 
     .content-column p {
-      font-family: Georgia, serif;
-      font-size: 17px;
-      line-height: 1.6;
-      color: #222222;
-      opacity: 0.85;
       margin-bottom: 15px;
     }
 
     /* Join Section */
     .join-section {
       text-align: center;
-      padding: 20px 20px 40px;
-      background: linear-gradient(to bottom, transparent, rgba(139, 92, 246, 0.03));
+      background: linear-gradient(to bottom, transparent, var(--color-primary-light));
     }
 
     .join-section h2 {
-      font-family: Georgia, serif;
-      font-size: 24px;
-      color: #222222;
       margin-bottom: 25px;
-      font-weight: normal;
-      opacity: 0.9;
     }
 
     .join-buttons {
       display: flex;
       justify-content: center;
-      gap: 20px;
+      gap: var(--spacing-md);
       flex-wrap: wrap;
     }
 
-    .join-button {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      background: #8B5CF6;
-      color: white;
-      padding: 16px 40px;
-      border-radius: 50px;
-      text-decoration: none;
-      font-family: Georgia, serif;
-      font-size: 17px;
-      font-weight: 500;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      box-shadow: 0 4px 6px rgba(139, 92, 246, 0.2);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .join-button.linkedin {
-      background: #0077B5;
-      box-shadow: 0 4px 6px rgba(0, 119, 181, 0.2);
-    }
-
-    .join-button.email {
-      background: #222222;
-      box-shadow: 0 4px 6px rgba(34, 34, 34, 0.2);
-    }
-
-    .join-button:hover {
-      background: #7C3AED;
-      transform: translateY(-2px) scale(1.02);
-      box-shadow: 0 6px 12px rgba(139, 92, 246, 0.3);
-    }
-
-    .join-button.linkedin:hover {
-      background: #005885;
-      box-shadow: 0 6px 12px rgba(0, 119, 181, 0.3);
-    }
-
-    .join-button.email:hover {
-      background: #444444;
-      box-shadow: 0 6px 12px rgba(34, 34, 34, 0.3);
-    }
-
-    .join-button:focus-visible {
-      outline: 2px solid #8B5CF6;
-      outline-offset: 2px;
-    }
-
-    .join-button.email:focus-visible {
-      outline-color: #666666;
-    }
-
-    /* Icon styling */
-    .join-button svg {
-      width: 20px;
-      height: 20px;
-      transition: transform 0.3s ease;
-      flex-shrink: 0;
-    }
-
-    .join-button:hover svg {
-      transform: translateX(2px);
-    }
-
     /* Why Connect Section */
-    .why-connect {
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 40px 20px;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 50px;
-    }
-
     .why-card h3 {
-      font-family: Georgia, serif;
-      font-size: 20px;
       margin-bottom: 18px;
-      color: #222222;
-      font-weight: normal;
     }
 
     .why-card ul {
@@ -224,12 +405,7 @@
     }
 
     .why-card li {
-      font-family: Georgia, serif;
-      font-size: 17px;
-      line-height: 1.6;
-      color: #222222;
-      opacity: 0.85;
-      margin-bottom: 10px;
+      margin-bottom: var(--spacing-sm);
       padding-left: 28px;
       position: relative;
     }
@@ -238,33 +414,20 @@
       content: '•';
       position: absolute;
       left: 0;
-      color: #8B5CF6;
-      font-size: 20px;
+      color: var(--color-primary);
+      font-size: var(--text-xl);
     }
 
     /* Discover Links */
-    .discover-section {
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 30px 20px 40px;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 40px;
-    }
-
     .discover-link {
       display: flex;
       align-items: center;
       gap: 12px;
-      font-family: Georgia, serif;
-      font-size: 18px;
-      color: #222222;
-      opacity: 0.85;
     }
 
     .discover-link span {
-      color: #8B5CF6;
-      font-size: 20px;
+      color: var(--color-primary);
+      font-size: var(--text-xl);
     }
 
     /* Map Section */
@@ -272,8 +435,8 @@
       width: 100%;
       height: 600px;
       position: relative;
-      background: #e0e0e0;
-      margin: 40px 0 0 0;
+      background: var(--color-bg-dark);
+      margin: var(--spacing-xl) 0 0 0;
     }
 
     .map-container {
@@ -281,38 +444,27 @@
       height: 100%;
     }
 
+    .map-container iframe {
+      border: 0;
+    }
+
     /* Footer */
     .footer {
-      background: #222222;
-      color: white;
-      padding: 60px 20px 30px;
+      background: var(--color-dark);
+      color: var(--color-white);
       margin-top: 0;
     }
 
-    .footer-content {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 60px;
-      margin-bottom: 40px;
-    }
-
     .footer-section h3 {
-      font-family: Georgia, serif;
-      font-size: 16px;
+      font-size: var(--text-base);
       font-weight: normal;
-      margin-bottom: 20px;
+      margin-bottom: var(--spacing-md);
       opacity: 0.9;
     }
 
     .footer-section p,
     .footer-section li {
-      font-family: Georgia, serif;
-      font-size: 14px;
-      line-height: 1.8;
-      opacity: 0.7;
-      margin-bottom: 10px;
+      margin-bottom: var(--spacing-sm);
     }
 
     .footer-section ul {
@@ -332,68 +484,13 @@
     }
 
     .footer-button {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: #8B5CF6;
-      color: white;
-      padding: 12px 30px;
-      border-radius: 30px;
-      text-decoration: none;
-      font-family: Georgia, serif;
-      font-size: 14px;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      box-shadow: 0 3px 5px rgba(139, 92, 246, 0.2);
       min-width: 160px;
       justify-content: center;
     }
 
-    .footer-button.linkedin {
-      background: #0077B5;
-      box-shadow: 0 3px 5px rgba(0, 119, 181, 0.2);
-    }
-
-    .footer-button.email-footer {
-      background: #666666;
-      box-shadow: 0 3px 5px rgba(102, 102, 102, 0.2);
-    }
-
-    .footer-button:hover {
-      background: #7C3AED;
-      transform: translateY(-2px) scale(1.02);
-      box-shadow: 0 5px 10px rgba(139, 92, 246, 0.3);
-    }
-
-    .footer-button.linkedin:hover {
-      background: #005885;
-      box-shadow: 0 5px 10px rgba(0, 119, 181, 0.3);
-    }
-
-    .footer-button.email-footer:hover {
-      background: #888888;
-      box-shadow: 0 5px 10px rgba(102, 102, 102, 0.3);
-    }
-
-    .footer-button:focus-visible {
-      outline: 2px solid #8B5CF6;
-      outline-offset: 2px;
-    }
-
-    .footer-button svg {
-      width: 16px;
-      height: 16px;
-      flex-shrink: 0;
-      transition: transform 0.3s ease;
-    }
-
-    .footer-button:hover svg {
-      transform: translateX(2px);
-    }
-
     .footer-legal {
-      font-size: 13px;
-      opacity: 0.6;
-      line-height: 1.6;
+      font-size: var(--text-xs);
+      line-height: var(--line-normal);
     }
 
     .footer-rna-link {
@@ -401,46 +498,41 @@
       text-decoration: underline;
       text-decoration-style: dotted;
       text-underline-offset: 2px;
-      transition: all 0.3s ease;
+      transition: var(--transition-base);
     }
 
     .footer-rna-link:hover {
-      color: #8B5CF6;
+      color: var(--color-primary);
       text-decoration-style: solid;
     }
 
     .footer-bottom {
       text-align: center;
-      padding-top: 30px;
+      padding-top: var(--spacing-lg);
       border-top: 1px solid rgba(255,255,255,0.1);
-      font-size: 13px;
-      opacity: 0.5;
+      font-size: var(--text-xs);
     }
 
-    /* Responsive Design */
+    /* ============================================
+       RESPONSIVE DESIGN
+       ============================================ */
     @media (max-width: 768px) {
-      .content-grid {
+      .grid-auto {
         grid-template-columns: 1fr;
-        gap: 40px;
+        gap: var(--spacing-xl);
       }
 
       .hero-title h1 {
         font-size: 2.5rem;
       }
 
-      .join-button {
-        padding: 15px 40px;
-        font-size: 16px;
+      .btn {
+        width: 200px;
+        justify-content: center;
       }
 
       .map-section {
         height: 400px;
-      }
-
-      .footer-content {
-        grid-template-columns: 1fr;
-        gap: 40px;
-        text-align: center;
       }
 
       .footer-section {
@@ -450,11 +542,6 @@
       .join-buttons {
         flex-direction: column;
         align-items: center;
-      }
-
-      .join-button {
-        width: 200px;
-        justify-content: center;
       }
 
       .footer-buttons-container {
@@ -482,30 +569,30 @@
   </section>
 
   <!-- Content Section -->
-  <section class="content-section">
-    <div class="content-grid">
+  <section class="container section--spacious">
+    <div class="grid-auto">
       <!-- French Column -->
       <div class="content-column">
-        <h2>
+        <h2 class="text-heading-secondary">
           Paris regorge de <em>talents en biodesign</em>, mais sans lieu ni réseau, beaucoup créent seul.es, dans leur cuisine.
         </h2>
-        <p>
+        <p class="text-body">
           <strong><em>Biodesign Paris</em></strong> a pour initiative de nous rassembler, cartographier les pratiques, se rencontrer, et rêver ensemble d'un lieu dédié.
         </p>
-        <p>
+        <p class="text-body">
           Si vous êtes designer, artiste, chercheur.e, cultivateur.rice de matériaux ou d'idées...
         </p>
       </div>
 
       <!-- English Column -->
       <div class="content-column">
-        <h2>
+        <h2 class="text-heading-secondary">
           Paris is full of <em>biodesign talent</em> — but without spaces or networks, many create alone, in their kitchens.
         </h2>
-        <p>
+        <p class="text-body">
           <strong><em>Biodesign Paris</em></strong> is an initiative to bring us together, map our practices, meet up, and dream collectively of a dedicated space.
         </p>
-        <p>
+        <p class="text-body">
           If you're a designer, artist, researcher, or a cultivator of materials or ideas...
         </p>
       </div>
@@ -513,22 +600,22 @@
   </section>
 
   <!-- Join Section -->
-  <section class="join-section">
-    <h2>Rejoignez la communauté / Join the community</h2>
+  <section class="join-section section--compact">
+    <h2 class="text-heading-primary">Rejoignez la communauté / Join the community</h2>
     <div class="join-buttons">
-      <a href="https://discord.gg/ccnrZh4QGN" target="_blank" rel="noopener noreferrer" class="join-button" aria-label="Join our Discord community">
+      <a href="https://discord.gg/ccnrZh4QGN" target="_blank" rel="noopener noreferrer" class="btn btn--primary" aria-label="Join our Discord community">
         <svg viewBox="0 0 127.14 96.36" fill="currentColor" aria-hidden="true" focusable="false">
           <path d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1A105.25,105.25,0,0,0,126.6,80.22h0C129.24,52.84,122.09,29.11,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,46,53.89,53,48.84,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.25,60,73.25,53s5-12.74,11.44-12.74S96.23,46,96.12,53,91.08,65.69,84.69,65.69Z"/>
         </svg>
         Discord
       </a>
-      <a href="https://www.linkedin.com/company/biodesign-paris" target="_blank" rel="noopener noreferrer" class="join-button linkedin" aria-label="Follow us on LinkedIn">
+      <a href="https://www.linkedin.com/company/biodesign-paris" target="_blank" rel="noopener noreferrer" class="btn btn--linkedin" aria-label="Follow us on LinkedIn">
         <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
           <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
         </svg>
         LinkedIn
       </a>
-      <a href="mailto:contact@biodesignparis.com" class="join-button email" aria-label="Contact us via email">
+      <a href="mailto:contact@biodesignparis.com" class="btn btn--dark" aria-label="Contact us via email">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
           <rect x="3" y="5" width="18" height="14" rx="2"/>
           <path d="m3 7 9 6 9-6"/>
@@ -539,10 +626,11 @@
   </section>
 
   <!-- Why Connect Section -->
-  <section class="why-connect">
-    <div class="why-card">
-      <h3>💛 Pourquoi se connecter ?</h3>
-      <ul>
+  <section class="container section">
+    <div class="grid-auto">
+      <div class="why-card">
+      <h3 class="text-heading-secondary">💛 Pourquoi se connecter ?</h3>
+      <ul class="text-body">
         <li>Trouver des partenaires pour vos projets</li>
         <li>Développer une communauté de biodesigners</li>
         <li>Être invité.e à des expos, appels, workshops</li>
@@ -551,25 +639,28 @@
     </div>
 
     <div class="why-card">
-      <h3>💛 Why connect?</h3>
-      <ul>
+      <h3 class="text-heading-secondary">💛 Why connect?</h3>
+      <ul class="text-body">
         <li>Find collaborators for your projects</li>
         <li>Develop a community of biodesigners</li>
         <li>Get invited to exhibitions, calls, and workshops</li>
         <li>Contribute to the creation of a future space for biodesign practices</li>
       </ul>
     </div>
+    </div>
   </section>
 
   <!-- Discover Section -->
-  <section class="discover-section">
-    <div class="discover-link">
-      <span>📍</span>
-      <p>Découvrez les bio-praticien.nes à Paris.</p>
-    </div>
-    <div class="discover-link">
-      <span>📍</span>
-      <p>Explore the map of biopractitioners in Paris.</p>
+  <section class="container section">
+    <div class="grid-auto grid-auto--tight">
+      <div class="discover-link text-body">
+        <span>📍</span>
+        <p>Découvrez les bio-praticien.nes à Paris.</p>
+      </div>
+      <div class="discover-link text-body">
+        <span>📍</span>
+        <p>Explore the map of biopractitioners in Paris.</p>
+      </div>
     </div>
   </section>
 
@@ -580,7 +671,6 @@
         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2622.964975644353!2d2.3683447!3d48.8955204!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66c1a4c0a7b8f%3A0x5c5f5e5a5e5e5e5e!2s189%20Rue%20d&#39;Aubervilliers%2C%2075018%20Paris%2C%20France!5e0!3m2!1sen!2sus!4v1698426542721!5m2!1sen!2sus&markers=color:red%7Clabel:CAP18%7C48.8955204,2.3683447"
         width="100%"
         height="100%"
-        style="border:0;"
         allowfullscreen=""
         loading="lazy"
         referrerpolicy="no-referrer-when-downgrade"
@@ -590,13 +680,14 @@
   </section>
 
   <!-- Footer -->
-  <footer class="footer">
-    <div class="footer-content">
+  <footer class="footer section--spacious">
+    <div class="container--wide">
+      <div class="grid-auto--wide">
       <!-- French Section -->
       <div class="footer-section">
         <h3>Biodesign Paris</h3>
-        <p>Un réseau pour cultiver le vivant à Paris</p>
-        <p class="footer-legal">
+        <p class="text-small">Un réseau pour cultiver le vivant à Paris</p>
+        <p class="footer-legal text-faded">
           Association loi 1901<br>
           RNA: <a href="https://assoce.fr/waldec/W751281361/BIODESIGN-PARIS" target="_blank" rel="noopener noreferrer" class="footer-rna-link">W751281361</a><br>
           Paris, France
@@ -607,19 +698,19 @@
       <div class="footer-section footer-links">
         <h3>Rejoignez-nous / Join us</h3>
         <div class="footer-buttons-container">
-          <a href="https://discord.gg/ccnrZh4QGN" target="_blank" rel="noopener noreferrer" class="footer-button" aria-label="Join our Discord community">
+          <a href="https://discord.gg/ccnrZh4QGN" target="_blank" rel="noopener noreferrer" class="btn btn--small btn--primary footer-button" aria-label="Join our Discord community">
             <svg viewBox="0 0 127.14 96.36" fill="currentColor" aria-hidden="true" focusable="false">
               <path d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1A105.25,105.25,0,0,0,126.6,80.22h0C129.24,52.84,122.09,29.11,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,46,53.89,53,48.84,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.25,60,73.25,53s5-12.74,11.44-12.74S96.23,46,96.12,53,91.08,65.69,84.69,65.69Z"/>
             </svg>
             Discord
           </a>
-          <a href="https://www.linkedin.com/company/biodesign-paris" target="_blank" rel="noopener noreferrer" class="footer-button linkedin" aria-label="Follow us on LinkedIn">
+          <a href="https://www.linkedin.com/company/biodesign-paris" target="_blank" rel="noopener noreferrer" class="btn btn--small btn--linkedin footer-button" aria-label="Follow us on LinkedIn">
             <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
               <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
             </svg>
             LinkedIn
           </a>
-          <a href="mailto:contact@biodesignparis.com" class="footer-button email-footer" aria-label="Contact us via email">
+          <a href="mailto:contact@biodesignparis.com" class="btn btn--small btn--gray footer-button" aria-label="Contact us via email">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
               <rect x="3" y="5" width="18" height="14" rx="2"/>
               <path d="m3 7 9 6 9-6"/>
@@ -632,16 +723,17 @@
       <!-- English Section -->
       <div class="footer-section">
         <h3>Biodesign Paris</h3>
-        <p>A network to grow life in Paris</p>
-        <p class="footer-legal">
+        <p class="text-small">A network to grow life in Paris</p>
+        <p class="footer-legal text-faded">
           Non-profit association<br>
           Registration: <a href="https://assoce.fr/waldec/W751281361/BIODESIGN-PARIS" target="_blank" rel="noopener noreferrer" class="footer-rna-link">W751281361</a><br>
           Paris, France
         </p>
       </div>
+      </div>
     </div>
 
-    <div class="footer-bottom">
+    <div class="footer-bottom text-subtle">
       <p>© 2024 Biodesign Paris · Tous droits réservés / All rights reserved</p>
     </div>
   </footer>
