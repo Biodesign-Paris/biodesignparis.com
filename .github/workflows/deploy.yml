@@ -21,7 +21,7 @@ jobs:
           server: biodesignparis.com
           username: u69uc6_github
           password: ${{ secrets.FTP_PASSWORD }}
-          server-dir: ./
+          server-dir: /landing/
           local-dir: ./
           exclude: |
             **/.git*
