@@ -1010,14 +1010,43 @@
           var mapContainer = document.getElementById('modalMapContainer');
           if (location && location.trim()) {
             mapContainer.style.display = 'block';
-            setTimeout(function() {
+            setTimeout(async function() {
               if (modalMap) { modalMap.remove(); }
-              modalMap = L.map('modalMap').setView([48.8566, 2.3522], 13);
+
+              // Default to Paris
+              var lat = 48.8566;
+              var lon = 2.3522;
+              var geocoded = false;
+
+              // Geocode the address using Nominatim
+              try {
+                var response = await fetch(
+                  'https://nominatim.openstreetmap.org/search?q=' +
+                  encodeURIComponent(location) + '&format=json&limit=1',
+                  { headers: { 'User-Agent': 'BiodesignParis (contact@biodesign.paris)' } }
+                );
+                var results = await response.json();
+                if (results.length > 0) {
+                  lat = parseFloat(results[0].lat);
+                  lon = parseFloat(results[0].lon);
+                  geocoded = true;
+                }
+              } catch (e) {
+                console.warn('Geocoding failed:', e);
+              }
+
+              // Create map
+              modalMap = L.map('modalMap').setView([lat, lon], 15);
               L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
                 attribution: '&copy; OpenStreetMap &copy; CARTO',
                 subdomains: 'abcd',
                 maxZoom: 20
               }).addTo(modalMap);
+
+              // Add marker
+              L.marker([lat, lon])
+                .addTo(modalMap)
+                .bindPopup(location);
             }, 100);
           } else {
             mapContainer.style.display = 'none';
